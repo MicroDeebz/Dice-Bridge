@@ -123,6 +123,10 @@ npm test          # parser / payload / protocol unit tests
 npm run build     # → dist/extension and dist/companion
 ```
 
+### No Node? Load the prebuilt copy
+
+`npm run build` also refreshes **`prebuilt/extension`**, a committed copy of the built browser extension. So without installing anything: download the repository (**Code → Download ZIP**), extract it, and point **Load unpacked** at `prebuilt/extension`. It is exactly as current as the last build, so `git pull` is enough to update it.
+
 ### 1. Host the companion
 
 Any static HTTPS host works (Netlify, Vercel, GitHub Pages, an S3 bucket). It must answer cross-origin GETs, because Owlbear Rodeo fetches the manifest from its own origin.
@@ -182,6 +186,7 @@ src/shared/       dice parser · Rumble payload · postMessage protocol (no brow
 src/extension/    MV3 manifest, service worker, page content script, OBR bridge, popup, options
 src/companion/    OBR extension: receiver, SDK write, status popover, OBR manifest
 test/             node:test suites
+prebuilt/         committed build of the browser extension (refreshed by npm run build)
 build.mjs         esbuild build for both halves
 tools/serve.mjs   dependency-free static server for the companion
 ```

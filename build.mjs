@@ -2,6 +2,8 @@
  * Build both halves of Dice Bridge with esbuild:
  *   dist/extension  – Manifest V3 extension, load-unpacked ready
  *   dist/companion  – Owlbear Rodeo extension to host on any static site
+ *   prebuilt/extension – committed copy of dist/extension, so the repo can be
+ *                        loaded in Chrome without Node or a build
  *
  * Usage: node build.mjs [--watch]
  */
@@ -42,6 +44,20 @@ const companion = {
   outbase: "src/companion",
 };
 
+const prebuiltDir = "prebuilt/extension";
+
+/**
+ * `dist/` is gitignored but `prebuilt/extension` is committed: it keeps the
+ * "download the ZIP and load it" path working without anyone building first.
+ */
+async function syncPrebuilt() {
+  const from = path.join(root, "dist/extension");
+  const to = path.join(root, prebuiltDir);
+  await rm(to, { recursive: true, force: true });
+  await mkdir(to, { recursive: true });
+  await cp(from, to, { recursive: true });
+}
+
 const staticFiles = [
   ["src/extension/manifest.json", "dist/extension"],
   ["src/extension/popup.html", "dist/extension"],
@@ -74,9 +90,11 @@ async function main() {
   }
 
   await Promise.all([build(extension), build(companion)]);
+  await syncPrebuilt();
   const files = await readdir(path.join(root, "dist/extension"));
   console.log(`\nExtension ready: dist/extension (${files.length} files)`);
   console.log("Companion ready: dist/companion (host this folder over HTTPS)");
+  console.log(`Prebuilt copy refreshed: ${prebuiltDir} (load this folder without Node)`);
 }
 
 main().catch((error) => {
