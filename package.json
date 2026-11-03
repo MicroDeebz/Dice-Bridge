@@ -1,0 +1,20 @@
+{
+  "name": "dice-bridge",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Browser extension that routes dice notation from any webpage into the Rumble! dice roller in an Owlbear Rodeo room.",
+  "scripts": {
+    "build": "node build.mjs",
+    "dev": "node build.mjs --watch",
+    "test": "node --test test/",
+    "serve:companion": "node tools/serve.mjs"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "devDependencies": {
+    "@owlbear-rodeo/sdk": "^3.1.0",
+    "esbuild": "^0.28.2"
+  }
+}

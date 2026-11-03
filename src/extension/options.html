@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Dice Bridge settings</title>
+    <link rel="stylesheet" href="options.css" />
+  </head>
+  <body>
+    <main>
+      <h1>Dice Bridge</h1>
+      <p class="lede">
+        Rolls selected on any page are handed to the Dice Bridge receiver extension inside your
+        Owlbear Rodeo room, which asks Rumble! to perform them.
+      </p>
+
+      <form id="settings">
+        <label class="field" for="senderName">
+          <span>Sender name in Rumble!</span>
+          <input id="senderName" name="senderName" type="text" maxlength="40" autocomplete="off" />
+          <small>The label Rumble! shows next to rolls sent from this browser.</small>
+        </label>
+
+        <label class="field" for="companionOrigin">
+          <span>Receiver origin</span>
+          <input id="companionOrigin" name="companionOrigin" type="url" spellcheck="false" placeholder="https://dice-bridge.example.com" />
+          <small>
+            The origin where you host the companion extension (<code>dist/companion</code>), without a
+            path. For local testing: <code>http://localhost:8788</code>.
+          </small>
+        </label>
+
+        <label class="field" for="preferredRoom">
+          <span>Preferred room (optional)</span>
+          <input id="preferredRoom" name="preferredRoom" type="text" spellcheck="false" placeholder="https://owlbear.rodeo/room/abc123 or abc123" />
+          <small>Leave blank to use the active or most recent Owlbear Rodeo tab.</small>
+        </label>
+
+        <label class="checkbox" for="showChip">
+          <input id="showChip" name="showChip" type="checkbox" />
+          <span>Show the floating “Roll” chip when dice notation is selected</span>
+        </label>
+
+        <div class="actions">
+          <button type="submit" class="primary">Save</button>
+          <span id="saved" class="saved" role="status"></span>
+        </div>
+      </form>
+
+      <section class="help">
+        <h2>Receiver setup</h2>
+        <ol>
+          <li>Host <code>dist/companion</code> over HTTPS with CORS enabled (any static host works).</li>
+          <li>In Owlbear Rodeo, add the extension by its manifest URL: <code>https://your-host/manifest.json</code>.</li>
+          <li>Install <strong>Rumble!</strong> in the same room — the receiver writes Rumble's documented dice metadata.</li>
+          <li>Enter the host's origin above and save.</li>
+        </ol>
+      </section>
+    </main>
+
+    <script src="options.js"></script>
+  </body>
+</html>

@@ -1,0 +1,40 @@
+{
+  "manifest_version": 3,
+  "name": "Dice Bridge — Rumble! for Owlbear Rodeo",
+  "version": "1.0.0",
+  "description": "Send dice notation from any webpage straight to the Rumble! roller in your Owlbear Rodeo room.",
+  "permissions": ["storage", "contextMenus"],
+  "host_permissions": ["https://owlbear.rodeo/*"],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "action": {
+    "default_title": "Dice Bridge",
+    "default_popup": "popup.html"
+  },
+  "options_ui": {
+    "page": "options.html",
+    "open_in_tab": true
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "exclude_matches": ["https://owlbear.rodeo/*"],
+      "js": ["content-source.js"],
+      "run_at": "document_idle"
+    },
+    {
+      "matches": ["https://owlbear.rodeo/*"],
+      "js": ["content-bridge.js"],
+      "run_at": "document_idle"
+    }
+  ],
+  "commands": {
+    "send-selection": {
+      "suggested_key": {
+        "default": "Alt+Shift+R"
+      },
+      "description": "Send the selected dice notation to Owlbear Rodeo"
+    }
+  }
+}

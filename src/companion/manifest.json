@@ -1,0 +1,16 @@
+{
+  "name": "Dice Bridge Receiver",
+  "version": "1.0.0",
+  "manifest_version": 1,
+  "description": "Receives dice notation from the Dice Bridge browser extension and rolls it through Rumble!.",
+  "author": "Dice Bridge",
+  "icon": "icon.svg",
+  "action": {
+    "title": "Dice Bridge",
+    "icon": "icon.svg",
+    "popover": "index.html",
+    "width": 320,
+    "height": 300
+  },
+  "background_url": "background.html"
+}

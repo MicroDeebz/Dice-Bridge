@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Dice Bridge</title>
+    <link rel="stylesheet" href="popup.css" />
+  </head>
+  <body>
+    <header>
+      <h1>Dice Bridge</h1>
+      <span id="status" class="status" data-state="unknown">
+        <span class="dot"></span>
+        <span id="statusText">Checking…</span>
+      </span>
+    </header>
+
+    <main>
+      <label class="field" for="notation">
+        <span>Dice notation</span>
+        <input id="notation" type="text" placeholder="2d20kh1+5" autocomplete="off" spellcheck="false" autofocus />
+      </label>
+
+      <p id="preview" class="preview" data-kind="hint" aria-live="polite">
+        Select dice on any page, or type notation here.
+      </p>
+
+      <button id="roll" class="primary" type="button" disabled>Roll in Owlbear Rodeo</button>
+
+      <section id="recentSection" hidden>
+        <h2>Recent</h2>
+        <div id="recent" class="recent"></div>
+      </section>
+    </main>
+
+    <footer>
+      <button id="openRoom" class="link" type="button">Open room</button>
+      <button id="options" class="link" type="button">Settings</button>
+    </footer>
+
+    <script src="popup.js"></script>
+  </body>
+</html>

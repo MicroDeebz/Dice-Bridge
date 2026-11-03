@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Dice Bridge">
+  <rect width="64" height="64" rx="14" fill="#1a1a21" />
+  <path d="M32 8 53 21v22L32 56 11 43V21z" fill="#7c5cff" opacity="0.92" />
+  <path d="M32 8v48M11 21l42 22M53 21 11 43" fill="none" stroke="#1a1a21" stroke-width="2" opacity="0.55" />
+  <circle cx="32" cy="32" r="5" fill="#ececf1" />
+</svg>

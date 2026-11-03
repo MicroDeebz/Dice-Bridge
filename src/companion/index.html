@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Dice Bridge receiver</title>
+    <style>
+      :root {
+        color-scheme: dark;
+        --bg: #1a1a21;
+        --panel: #23232d;
+        --line: #34343f;
+        --text: #ececf1;
+        --muted: #9b9baa;
+        --ok: #3ddc97;
+        --warn: #f5b942;
+        --accent: #7c5cff;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        padding: 12px;
+        background: var(--bg);
+        color: var(--text);
+        font: 13px/1.45 system-ui, -apple-system, "Segoe UI", sans-serif;
+      }
+
+      h1 {
+        margin: 0 0 8px;
+        font-size: 14px;
+      }
+
+      .status {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        margin: 0 0 10px;
+        color: var(--warn);
+        font-size: 12px;
+      }
+
+      .status::before {
+        content: "";
+        width: 7px;
+        height: 7px;
+        border-radius: 50%;
+        background: currentColor;
+      }
+
+      .status[data-state="ok"] {
+        color: var(--ok);
+      }
+
+      dl {
+        display: grid;
+        grid-template-columns: auto 1fr;
+        gap: 4px 10px;
+        margin: 0 0 10px;
+        padding: 10px;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        background: var(--panel);
+        font-size: 12px;
+      }
+
+      dt {
+        color: var(--muted);
+      }
+
+      dd {
+        margin: 0;
+        font-family: ui-monospace, "SF Mono", Menlo, monospace;
+        overflow-wrap: anywhere;
+      }
+
+      dd[data-error="true"] {
+        color: #ff8080;
+      }
+
+      button {
+        width: 100%;
+        padding: 8px;
+        border: 0;
+        border-radius: 8px;
+        background: var(--accent);
+        color: #fff;
+        font-weight: 600;
+        cursor: pointer;
+      }
+
+      button:disabled {
+        opacity: 0.5;
+        cursor: progress;
+      }
+
+      .hint {
+        margin: 10px 0 0;
+        color: var(--muted);
+        font-size: 11px;
+      }
+    </style>
+  </head>
+  <body data-page="popover">
+    <h1>Dice Bridge</h1>
+    <p id="status" class="status" data-state="waiting">Connecting to Owlbear Rodeo…</p>
+
+    <dl>
+      <dt>Room</dt>
+      <dd id="room">—</dd>
+      <dt>Rolls sent</dt>
+      <dd id="count">0</dd>
+      <dt>Last roll</dt>
+      <dd id="lastRoll">—</dd>
+    </dl>
+
+    <button id="test" type="button">Test roll (1d20)</button>
+    <p class="hint">
+      Rolls from the Dice Bridge browser extension are handed to Rumble!, which must be installed in
+      this room. Keep the room tab open while you roll.
+    </p>
+
+    <script src="./page.js"></script>
+  </body>
+</html>
