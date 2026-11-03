@@ -1,7 +1,7 @@
 {
+  "manifest_version": 1,
   "name": "dice-bridge",
   "version": "1.0.0",
-  "manifest_version": "1",
   "private": true,
   "type": "module",
   "description": "Browser extension that routes dice notation from any webpage into the Rumble! dice roller in an Owlbear Rodeo room.",
